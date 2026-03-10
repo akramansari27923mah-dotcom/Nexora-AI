@@ -8,7 +8,7 @@ const ai = new Groq({
 
 const main = async (content, history) => {
 
-    const history = Array.isArray(history) ? history : []
+    const historys = Array.isArray(history) ? history : []
 
     const response = await ai.chat.completions.create({
         messages: [
@@ -16,7 +16,7 @@ const main = async (content, history) => {
                 role: 'system',
                 content: 'you are a helpfull assistant'
             },
-            ...history,
+            ...historys,
             {
                 role: 'user',
                 content: content
