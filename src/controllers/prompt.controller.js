@@ -8,6 +8,8 @@ const ai = new Groq({
 
 const main = async (content, history) => {
 
+    const history = Array.isArray(history) ? history : []
+
     const response = await ai.chat.completions.create({
         messages: [
             {
