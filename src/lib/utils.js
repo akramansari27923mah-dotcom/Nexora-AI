@@ -9,11 +9,10 @@ export const hasePassword = (password) => {
     const hasedPassword = bcrypt.hash(password, 10);
     return hasedPassword;
 }
-
 export const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'None',
+    secure: true,        
+    sameSite: "None",    
     maxAge: 24 * 60 * 60 * 1000
 }
 
