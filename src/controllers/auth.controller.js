@@ -78,14 +78,14 @@ const login = async (req, res) => {
         const isPassword = await bcrypt.compare(password, isUser.password)
 
         if (!isPassword) {
-            res.status(403).json({
+           return res.status(403).json({
                 success: false,
                 message: 'Invalid credentials'
             })
         }
 
         const token = generateToken(isUser._id)
-        
+
         res.cookie('token', token, cookieOptions)
 
         res.status(200).json({
@@ -94,7 +94,8 @@ const login = async (req, res) => {
             user: {
                 id: isUser._id,
                 username: isUser.username,
-                email: isUser.email
+                email: isUser.email,
+                token: token
             }
         })
     }
@@ -109,6 +110,7 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
     const token = req.cookies?.token
+
 
     if (!token) {
         return res.status(401).json({

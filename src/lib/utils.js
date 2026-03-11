@@ -11,11 +11,11 @@ export const hasePassword = (password) => {
 }
 export const cookieOptions = {
     httpOnly: true,
-    secure: true,        
-    sameSite: "None",    
+    secure: true,
+    sameSite: "None",
     maxAge: 24 * 60 * 60 * 1000
 }
 
 export const generateToken = (userId) => {
-    return jwt.sign({ id: userId }, JWT_SECRET)
+    return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: '7d' })
 }
